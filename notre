@@ -82,3 +82,74 @@ Generate at 1024×1024, no transparency, export as PNG, then use Xcode's Asset C
 
 ---
 **Note:** If Apple sent you an actual rejection email with a specific Guideline number, paste that exact text — I can then give you the precise fix for that specific rejection rather than a general audit.
+
+
+//// app review not
+
+Pixvera Pro requires no account, login, or internet connection — all
+features run entirely on-device.
+
+HOW TO TEST KEY FEATURES:
+1. Scanner & OCR tab → tap "Scan Document" to open the native document
+   camera (VNDocumentCameraViewController). NOTE: This requires a
+   physical device with a camera — it will not function in the
+   Simulator. Alternatively, tap "Pick Photo" to test OCR on an
+   existing image without using the camera.
+2. Photo Editor tab → tap "Choose from Library" to select any photo,
+   then try Filters, Crop, Resize, Tune, and Stamp tools.
+3. Images → PDF tab → select multiple photos to merge into a
+   multi-page PDF.
+4. Sign Stamp tab → draw with finger or Apple Pencil, export as PNG
+   or PDF.
+5. Vault tab → shows all generated files; tap the share or print icon
+   to test AirPrint/Share Sheet.
+
+PERMISSIONS:
+- Camera: used only for the built-in document scanner (edge
+  detection). No photos are taken outside this feature.
+- Photo selection uses PHPickerViewController (Photos Picker), which
+  does not require photo library permission.
+
+DATA COLLECTION:
+This app collects no user data, analytics, or advertising
+identifiers. All processing (OCR, image filters, PDF generation) is
+performed locally using Apple frameworks (Vision, VisionKit,
+PencilKit, Core Image, PDFKit). No backend/server is used.
+
+No demo account is needed — there is no login system in this app.
+
+
+
+
+app description//
+
+Pixvera Pro is your all-in-one document and photo toolkit — scan, edit, sign, and export, all processed privately on your device.
+
+📄 Smart Document Scanner
+Scan any paper document using automatic edge detection powered by Apple's native scanner engine. Multi-page scans are combined into a single, clean PDF — ready to share, print, or store.
+
+🔤 On-Device Text Recognition (OCR)
+Extract text from any scanned document or photo instantly using Apple's Vision framework — fully offline, no internet required. Copy the text or export it as a standalone .txt file.
+
+🎨 Pro Photo Editor
+Fine-tune your photos with professional filters — Document Scan, Auto-Enhance, Monochrome, Sepia, Warm Studio, Cool Film, Vignette, and Invert. Adjust brightness, contrast, saturation, and sharpness with live preview.
+
+✂️ Crop, Resize & Rotate
+Crop to standard aspect ratios (1:1, 4:3, 16:9, 3:2, 9:16), resize to exact dimensions or presets (1080p, Square, Story, Passport), and rotate with a single tap.
+
+✍️ Digital Signature & Stamp Studio
+Draw your signature or a custom stamp using Apple Pencil or your finger, with adjustable ink color and thickness. Export as a transparent PNG or embed directly into a PDF.
+
+🖼️ Images to PDF Converter
+Select up to 50 photos, arrange them in your preferred order, and merge them into a single multi-page PDF booklet.
+
+🔒 Privacy-First by Design
+Every feature — scanning, OCR, editing, signing — runs entirely on your device. Nothing is uploaded, tracked, or shared without your action. Strip EXIF/GPS metadata from photos before sharing them, for extra privacy.
+
+🖨️ Direct AirPrint Support
+Print any saved document straight from your Vault over Wi-Fi — no extra apps needed.
+
+📁 Built-In Vault
+All your scans, edited photos, signatures, and PDFs are organized in one place, with file size at a glance and one-tap share or print.
+
+Whether you're digitizing receipts, signing a form, prepping a photo for social media, or building a PDF portfolio — Pixvera Pro handles it all, privately and offline.
