@@ -1,0 +1,84 @@
+# Pixvera Pro — App Store Submission Guidehttps://saithahtisham9.github.io/Pixvera-Pro/
+
+## 1. CRITICAL FIX — Info.plist (this causes crash + rejection)
+
+Open your `Info.plist` (or Target → Info tab in Xcode) and add:
+
+```xml
+<key>NSCameraUsageDescription</key>
+<string>Pixvera Pro uses your camera to scan documents with automatic edge detection.</string>
+```
+
+Why: `VNDocumentCameraViewController` (used in `ScanOCRStudioView`) accesses the camera. Without this key, the app **crashes immediately** when the reviewer taps "Scan Document" — this alone causes rejection under Guideline 2.1 (App Completeness).
+
+You do **not** need `NSPhotoLibraryUsageDescription` since you correctly use `PhotosPicker` (the modern picker), which needs no permission entry.
+
+## 2. CRITICAL FIX — Replace placeholder links
+
+In `PreferencesView`, replace:
+```swift
+Link("Privacy Policy", destination: URL(string: "https://example.com/pixvera-privacy")!)
+Link("Terms of Service", destination: URL(string: "https://example.com/pixvera-terms")!)
+Link("Contact Developer", destination: URL(string: "mailto:support@pixvera.app")!)
+```
+with your **real, live** URLs once you host the Privacy Policy file (see below) and have a real support email. A dead/placeholder link is one of the top App Store rejection reasons (Guideline 5.1.1).
+
+**How to host the Privacy Policy for free (pick one):**
+- GitHub Pages (create a repo → enable Pages → drop the `.md` as `index.html` or convert to HTML)
+- Notion → "Share to web" (public page)
+- Google Sites (free, instant public URL)
+
+## 3. App Store Connect — App Privacy Section
+
+When filling the "App Privacy" questionnaire in App Store Connect, since the app collects **zero data**, select:
+- **"Data Not Collected"** for all categories.
+
+Do NOT leave this section unanswered — an unanswered privacy questionnaire is an automatic rejection.
+
+## 4. Other things Apple reviewers check on apps like this
+
+| Item | Status | Action |
+|---|---|---|
+| App icon (1024×1024, no alpha/transparency, no rounded corners) | Need to generate | See icon prompt below |
+| Launch screen doesn't crash / matches design | ✅ SwiftUI handles this | — |
+| No dead/placeholder buttons | ✅ all buttons wired | — |
+| App works fully offline without login | ✅ | — |
+| In-app purchase / "Pro" claims | ⚠️ Check | If "Pro" implies paid features but you have no StoreKit/paywall code, either add IAP properly or remove "Pro" claims that imply premium unlocks you don't have |
+| Demo account note (if login existed) | N/A — no login | — |
+| Support URL + Marketing URL in App Store Connect | Need real URLs | Use same hosting as Privacy Policy |
+| App description doesn't over-promise | Review copy below | Use suggested listing text |
+
+## 5. Suggested App Store Listing Copy
+
+**App Name:** Pixvera Pro: Scan & PDF Studio
+
+**Subtitle:** Scanner, OCR, Editor & Signer
+
+**Short description:**
+Scan documents with edge detection, extract text with on-device OCR, edit photos with pro filters, merge images into PDFs, and sign documents with Apple Pencil — all processed privately on your device.
+
+**Keywords:** scanner, pdf, ocr, sign, document, photo editor, watermark, e-signature, image to pdf
+
+## 6. Icon Design Brief (matches your Almond Ivory & Warm Bronze theme)
+
+**Concept:** A minimal document icon with a folded corner, overlaid with a subtle scanner viewfinder frame, on a warm cream/almond background with bronze accent — reflecting the app's actual color palette (`#935624` bronze, cream `#FAF7F2` background).
+
+**AI Icon Generation Prompt** (use in Midjourney / DALL·E / any icon generator):
+
+> Minimalist flat app icon, a cream almond-ivory rounded square background, centered warm bronze document sheet with a folded top-right corner, a thin bronze scanner viewfinder bracket overlay in each corner of the document, soft subtle drop shadow, no text, no gradients besides a gentle warm tone, clean modern iOS app icon style, 1024x1024, high resolution, flat vector design
+
+Generate at 1024×1024, no transparency, export as PNG, then use Xcode's Asset Catalog to auto-generate all required sizes.
+
+## 7. Final Pre-Submission Checklist
+
+- [ ] Added `NSCameraUsageDescription` to Info.plist
+- [ ] Hosted Privacy Policy at a real URL and updated the link in code
+- [ ] Hosted/updated Terms of Service link (or remove the row if you don't have one yet)
+- [ ] Real support email added
+- [ ] App Privacy questionnaire filled as "Data Not Collected" in App Store Connect
+- [ ] 1024×1024 icon uploaded (no alpha channel)
+- [ ] Tested Scan → OCR → Export → Share flow on a real device (not just simulator, since camera doesn't work in simulator)
+- [ ] Removed/clarified any "Pro" claims not backed by actual in-app purchases
+
+---
+**Note:** If Apple sent you an actual rejection email with a specific Guideline number, paste that exact text — I can then give you the precise fix for that specific rejection rather than a general audit.
